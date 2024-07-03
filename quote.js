@@ -1,6 +1,22 @@
-window.addEventListener("load", async (event) => {
-    json = await (await fetch("https://api.quotable.io/random")).json();
+async function getQuote() {
+    return await (await fetch("https://api.quotable.io/random")).json();
+}
 
-    document.querySelector("#quote-content").innerHTML = json.content;
-    document.querySelector("#quote-author").innerHTML = `By: ${json.author}`;
+function displayQuote(quote, author) {
+    document.querySelector("#quote-content").innerHTML = quote;
+    document.querySelector("#quote-author").innerHTML = `By: ${author}`;
+}
+
+// Display quote when window loads
+window.addEventListener("load", async (event) => {
+    data = await getQuote();
+    displayQuote(data.content, data.author);
 });
+
+// Display quote when button click
+document
+    .querySelector("#quote-button")
+    .addEventListener("click", async (event) => {
+        data = await getQuote();
+        displayQuote(data.content, data.author);
+    });
