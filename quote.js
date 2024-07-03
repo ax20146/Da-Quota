@@ -12,3 +12,11 @@ window.addEventListener("load", async (event) => {
     data = await getQuote();
     displayQuote(data.content, data.author);
 });
+
+// Display quote when button click
+document
+    .querySelector("#quote-button")
+    .addEventListener("click", async (event) => {
+        data = await getQuote();
+        displayQuote(data.content, data.author);
+    });
